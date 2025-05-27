@@ -7,23 +7,23 @@ namespace Assignment3_Generics
         static void Main(string[] args)
         {
             #region Resize Array in the lecture
-            MyList<int> myList = new MyList<int>();
-            MyAdvancedList<int> myAdvancedList = new MyAdvancedList<int>();
+            //MyList<int> myList = new MyList<int>();
+            //MyAdvancedList<int> myAdvancedList = new MyAdvancedList<int>();
 
 
-            myList.Add(1);
-            myList.Add(2);
-            myList.Add(3);
-            myList.Add(4);
-            myList.Add(5);
-            myList.Add(6);
+            //myList.Add(1);
+            //myList.Add(2);
+            //myList.Add(3);
+            //myList.Add(4);
+            //myList.Add(5);
+            //myList.Add(6);
 
-            Console.WriteLine("_________Array Item___________");
-            myList.DisplyAll();
+            //Console.WriteLine("_________Array Item___________");
+            //myList.DisplyAll();
 
-            Console.WriteLine("_________Resize Array__________");
-            myAdvancedList.Resize(myList);
-            myAdvancedList.DisplyAll();
+            //Console.WriteLine("_________Resize Array__________");
+            //myAdvancedList.Resize(myList);
+            //myAdvancedList.DisplyAll();
             #endregion
 
             #region Assignment1_ArrayUtils
@@ -34,11 +34,11 @@ namespace Assignment3_Generics
             int [] reverseArray = arrayUtils.ReverseArray(Testarray);
             for (int i = 0; i < reverseArray.Length; i++)
             {
-                Console.WriteLine($"A  Reverse Array is {reverseArray[i]}");
+                Console.WriteLine($" Index {i} :{reverseArray[i]}");
             }
-            var maxValue = arrayUtils.FindMax(Testarray);
 
-            Console.WriteLine("");
+            var maxValue = arrayUtils.FindMax(Testarray);
+            Console.WriteLine($"tha Maximum Value of Array is :{maxValue}");
             #endregion
 
             //Console.WriteLine("Hello, World!");
