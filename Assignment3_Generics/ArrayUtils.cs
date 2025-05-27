@@ -9,7 +9,7 @@ namespace Assignment3_Generics
     public class ArrayUtils 
     {
 
-
+        //apply any type
         public T[] ReverseArray<T>(T[] array)
         {
             T[] reArray = new T[array.Length];
@@ -21,15 +21,17 @@ namespace Assignment3_Generics
             return reArray;
             
         }
+        //apply only struct type
         public  T FindMax<T>(T[] array) where T : struct , IComparable<T> 
         {
             if (array == null || array.Length == 0)
                 throw new ArgumentException("Array cannot be null or empty");
 
             T max = array[0];
-            for(int i = 0; i < array.Length; i++)
+            //start from index = 1 for a max equal the first value 
+            for(int i = 1; i < array.Length; i++)
             {
-                if (max.CompareTo(array[i]) > 0)
+                if (array[i].CompareTo(max) > 0)
                 {
                     max = array[i];
                 }
