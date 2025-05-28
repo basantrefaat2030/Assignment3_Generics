@@ -63,7 +63,7 @@ namespace Assignment3_Generics
 
                 RecentlyUsed(key);
             }
-             throw new KeyNotFoundException("Key not found in cache");
+            return default;
 
         }
         private void RecentlyUsed(TKey key)
