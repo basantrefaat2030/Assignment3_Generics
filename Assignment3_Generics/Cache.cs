@@ -66,10 +66,16 @@ namespace Assignment3_Generics
             return default;
 
         }
+        public string GetLRUList() 
+        {
+           return string.Join(",", LruList);
+        }
         private void RecentlyUsed(TKey key)
         {
             LruList.Remove(key);
             LruList.Add(key);
         }
+
+       
     }
 }

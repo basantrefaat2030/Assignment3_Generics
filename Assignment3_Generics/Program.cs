@@ -59,18 +59,25 @@ namespace Assignment3_Generics
 
             #region Cache<Tkey,Tvalue>
             Console.WriteLine("------------- Cache<Tkey,Tvalue> ------------- ");
-            var cache = new Cache<string, int>(2);
 
-            cache.Add("a", 1);
-            cache.Add("b", 2);
+            Cache<string,int> cache = new Cache<string, int>(3);
 
-            var Avalue = cache.GetValue("c") == 0 ? "Not Found" : cache.GetValue("c").ToString();
+            cache.Add("A", 1);
+            cache.Add("B", 2);
+            cache.Add("C", 3);
+            Console.WriteLine($"After adding A,B,C: {cache.GetLRUList()}");
 
-            var Cvalue = cache.GetValue("c") == 0 ? "Not Found" : cache.GetValue("c").ToString();
-            Console.WriteLine($"\nAvalue is : {Avalue} & Cvlue is  {Cvalue}");
+            cache.GetValue("A");
+            Console.WriteLine($"After accessing A: {cache.GetLRUList()}"); 
 
-            if (cache.GetValue("b")  != 0)
-                Console.WriteLine($"\nb key is value {cache.GetValue("b")}");
+            cache.Add("D", 4);
+            Console.WriteLine($"After adding D: {cache.GetLRUList()}"); 
+
+            Console.WriteLine("\nFinal Cache Contents:");
+            Console.WriteLine($"Contains 'B': { (cache.GetValue("B") == 0 ? " Not Found": cache.GetValue("B").ToString())}");
+            Console.WriteLine($"Contains 'C': {(cache.GetValue("C") == 0 ? " Not Found" : cache.GetValue("C").ToString())}"); 
+            Console.WriteLine($"Contains 'A': {(cache.GetValue("A") == 0 ? " Not Found" : cache.GetValue("A").ToString())}"); 
+            Console.WriteLine($"Contains 'D': { (cache.GetValue("D") == 0 ? " Not Found": cache.GetValue("D").ToString())}"); 
             #endregion
 
             //Console.WriteLine("Hello, World!");
