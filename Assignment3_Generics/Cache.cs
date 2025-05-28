@@ -9,23 +9,67 @@ namespace Assignment3_Generics
 
     public class Cache <TKey, TValue> where TKey : notnull
     {
-        private int capacity;
-        private Tuple<TKey, TValue>[] items;
-        private int[] usageOrder;
-        private int count;
-
-        public Cache(int size)
+        private  Dictionary<TKey, TValue> items = new();
+        private  List<TKey> LruList = new();
+        private readonly int capacity;
+        public Cache(int fixedSize)
         {
-            capacity = size;
-            items = new Tuple<TKey, TValue>[capacity];
-            usageOrder = new int[capacity];
-            count = 0;
+            capacity = fixedSize;
+
         }
-        public void Add(TKey key, TValue value) 
+        public void Add(TKey key, TValue value)
         {
-        
+            if (items.ContainsKey(key))
+            {
+                //update
+                items[key] = value;
+                RecentlyUsed(key);
+            }
+            else
+            {
+                if (items.Count >= capacity)
+                {
+                    items.Remove(LruList[0]);
+                    LruList.RemoveAt(0);
+                }
+            }
+            //add
+            items.Add(key, value);
+            LruList.Add(key);
         }
 
-        
+        public bool Remove(TKey key)
+        {
+            bool removed = false;
+
+            if (key != null)
+            {
+                removed = items.Remove(key);
+
+                if (removed)
+                    LruList.Remove(key);
+            }
+
+            return removed;
+        }
+
+        public TValue GetValue(TKey key)
+        {
+            if (key != null)
+            {
+                if (items.ContainsKey(key))
+                    return items[key];
+
+
+                RecentlyUsed(key);
+            }
+             throw new KeyNotFoundException("Key not found in cache");
+
+        }
+        private void RecentlyUsed(TKey key)
+        {
+            LruList.Remove(key);
+            LruList.Add(key);
+        }
     }
 }
