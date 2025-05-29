@@ -55,13 +55,11 @@ namespace Assignment3_Generics
 
         public TValue GetValue(TKey key)
         {
-            if (key != null)
+            if (key != null && items.ContainsKey(key))
             {
-                if (items.ContainsKey(key))
-                    return items[key];
-
-
                 RecentlyUsed(key);
+
+                return items[key];
             }
             return default;
 
